@@ -1,0 +1,12 @@
+# CODESYS backups/temporales
+*.project~
+*.~project
+*.autosave
+*.bak
+*.backup
+~*
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
