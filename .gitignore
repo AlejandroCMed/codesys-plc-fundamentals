@@ -10,3 +10,10 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# CODESYS: sidecars y caché de compilación (versionar solo .project y .xml)
+*.opt
+*.compileinfo
+*precompilecache*
+*.Device.*
+*.~*
