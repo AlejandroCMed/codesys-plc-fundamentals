@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP22 Patch 3" creationDateTime="2026-08-12T12:57:12.428946" />
-  <contentHeader name="04_MarchaParo_TON.project" modificationDateTime="2026-08-11T17:47:58.3686324">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP22 Patch 3" creationDateTime="2026-08-12T13:17:39.6169411" />
+  <contentHeader name="04_MarchaParo_TON.project" modificationDateTime="2026-08-12T13:15:44.3913014">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -64,6 +64,16 @@
                         <BOOL />
                       </type>
                     </variable>
+                    <variable name="xOrdenMarcha">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="TON_Retardo">
+                      <type>
+                        <derived name="TON" />
+                      </type>
+                    </variable>
                   </localVars>
                 </interface>
                 <body>
@@ -104,7 +114,7 @@
                         <connection refLocalId="0" />
                       </connectionPointIn>
                       <connectionPointOut />
-                      <variable>xMotor</variable>
+                      <variable>xOrdenMarcha</variable>
                     </contact>
                     <contact localId="5" negated="true" storage="none" edge="none">
                       <position x="0" y="0" />
@@ -119,6 +129,89 @@
                       <position x="0" y="0" />
                       <connectionPointIn>
                         <connection refLocalId="5" />
+                      </connectionPointIn>
+                      <connectionPointOut />
+                      <variable>xOrdenMarcha</variable>
+                    </coil>
+                    <comment localId="7" height="0" width="0">
+                      <position x="0" y="0" />
+                      <content>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                      </content>
+                    </comment>
+                    <vendorElement localId="8">
+                      <position x="0" y="0" />
+                      <alternativeText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                      </alternativeText>
+                      <addData>
+                        <data name="http://www.3s-software.com/plcopenxml/fbdelementtype" handleUnknown="implementation">
+                          <ElementType xmlns="">networktitle</ElementType>
+                        </data>
+                      </addData>
+                    </vendorElement>
+                    <contact localId="10" negated="false" storage="none" edge="none">
+                      <position x="0" y="0" />
+                      <connectionPointIn>
+                        <connection refLocalId="0" />
+                      </connectionPointIn>
+                      <connectionPointOut />
+                      <variable>xOrdenMarcha</variable>
+                    </contact>
+                    <inVariable localId="11">
+                      <position x="0" y="0" />
+                      <connectionPointOut />
+                      <expression>T#5S</expression>
+                    </inVariable>
+                    <block localId="9" typeName="TON" instanceName="TON_Retardo">
+                      <position x="0" y="0" />
+                      <inputVariables>
+                        <variable formalParameter="IN">
+                          <connectionPointIn>
+                            <connection refLocalId="10" />
+                          </connectionPointIn>
+                        </variable>
+                        <variable formalParameter="PT">
+                          <connectionPointIn>
+                            <connection refLocalId="11" />
+                          </connectionPointIn>
+                        </variable>
+                      </inputVariables>
+                      <inOutVariables />
+                      <outputVariables>
+                        <variable formalParameter="Q">
+                          <connectionPointOut />
+                        </variable>
+                        <variable formalParameter="ET">
+                          <connectionPointOut>
+                            <expression />
+                          </connectionPointOut>
+                        </variable>
+                      </outputVariables>
+                      <addData>
+                        <data name="http://www.3s-software.com/plcopenxml/fbdcalltype" handleUnknown="implementation">
+                          <CallType xmlns="">functionblock</CallType>
+                        </data>
+                        <data name="http://www.3s-software.com/plcopenxml/inputparamtypes" handleUnknown="implementation">
+                          <InputParamTypes xmlns="">BOOL TIME</InputParamTypes>
+                        </data>
+                        <data name="http://www.3s-software.com/plcopenxml/outputparamtypes" handleUnknown="implementation">
+                          <OutputParamTypes xmlns="" />
+                        </data>
+                      </addData>
+                    </block>
+                    <contact localId="12" negated="true" storage="none" edge="none">
+                      <position x="0" y="0" />
+                      <connectionPointIn>
+                        <connection refLocalId="9" formalParameter="Q" />
+                      </connectionPointIn>
+                      <connectionPointOut />
+                      <variable>xParo</variable>
+                    </contact>
+                    <coil localId="13" negated="false" storage="none">
+                      <position x="0" y="0" />
+                      <connectionPointIn>
+                        <connection refLocalId="12" />
                       </connectionPointIn>
                       <connectionPointOut />
                       <variable>xMotor</variable>
